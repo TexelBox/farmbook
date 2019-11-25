@@ -1,6 +1,13 @@
 <?php
     $pageTitle = "HOME";
     require_once("header.php");
+    require_once("database.php");
+
+    // EXAMPLE USAGE...
+    $db = new Database();
+    $result = $db->query("SELECT * FROM FARM");
+    $nbRows = $result->num_rows;
+    echo("TEST --- NUMBER OF ROWS: " . $nbRows);
 ?>
 
 <section id="showcase">
@@ -19,11 +26,11 @@
     </aside>
 </div>
 
-<form action="add.php" method="post">
+<!--form action="add.php" method="post">
     Name: <input type="text" name="name"><br>
     E-mail: <input type="text" name="email"><br>
     <input type="submit" value="add">
-</form>
+</form-->
 
 <?php
     require_once("footer.php");
