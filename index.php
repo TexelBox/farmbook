@@ -1,5 +1,7 @@
 <?php
     $pageTitle = "HOME";
+    $navbarLink1 = "login.php";
+    $navbarLink1Title = "LOGIN";
     require_once("header.php");
     require_once("database.php");
 

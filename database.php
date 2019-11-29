@@ -27,8 +27,32 @@ class Database {
         }
     }
 
+    // unsafe query...
     public function query($query) {
         $result = $this->connection->query($query);
+        return $result;
+    }
+
+    // safe query...
+    // ASSUMED FORMAT (upto caller to respect this!!!)...
+    // reference: https://websitebeaver.com/prepared-statements-in-php-mysqli-to-prevent-sql-injection
+    /* EXAMPLE...
+    $stmt = $connection->prepare("INSERT INTO myTable (name, age) VALUES (?, ?)");
+    $stmt->bind_param("si", $_POST['name'], $_POST['age']);
+    $stmt->execute();
+    $stmt->close();
+
+    thus here...
+    $preparedQuery === "INSERT INTO myTable (name, age) VALUES (?, ?)"
+    $types === "si"
+    $params === { $_POST['name'], $_POST['age'] }
+    */
+    public function preparedQuery($preparedQuery, $types, $params) {
+        $stmt = $this->connection->prepare($preparedQuery);
+        $stmt->bind_param($types, ...$params);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
         return $result;
     }
 
