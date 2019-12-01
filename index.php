@@ -2,6 +2,8 @@
     $pageTitle = "HOME";
     $navbarLink1 = "login.php";
     $navbarLink1Title = "LOGIN";
+	$navbarLink2 = "damage_by_time.php";
+    $navbarLink2Title = "Damage by Time"; 
     require_once("header.php");
     require_once("database.php");
 
