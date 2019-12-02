@@ -57,10 +57,8 @@ if(isset($_POST["uploadName"]))
 	if($uploadName != "")
 	{
 		$db = new Database();		
-		$sql = "INSERT INTO `damage` 
-				(`damage_id`, `name`, `start_date`, `end_date`) 
-				VALUES 
-				(NULL, ?, ?, ?)";
+		//$sql = "INSERT INTO `DAMAGE` (`damage_id`, `name`, `start_date`, `end_date`) VALUES (NULL, 'name', '2019-11-10', '2019-11-11')";
+		$sql = "INSERT INTO `DAMAGE` (`damage_id`, `name`, `start_date`, `end_date`) VALUES (NULL, ?, ?, ?)";
 		$result = $db->preparedQuery($sql, "sss", array($uploadName, $uploadStartDate, $uploadEndDate));		
 	}
 ?>
