@@ -13,8 +13,6 @@
     </section>
 </div>
 
-
-
 <!--Upload Entity Attributes or Assign them NULL values-->
 <?php
 $uploadName = NULL;
@@ -127,7 +125,7 @@ if(isset($_POST["queryStartDate"]))
 				<td><?php echo $resultArr[$i]['start_date']; ?></td>
 				<td><?php echo $resultArr[$i]['end_date']; ?></td>
 			</tr>
-			<?php $i++; endwhile; ?>
+			<?php $i++; endwhile; $i = 0?>
 		</table>
 		
 		<!--Functionality to Download Result Table as CSV in JS-->
@@ -142,6 +140,33 @@ if(isset($_POST["queryStartDate"]))
 			<input type="button" onclick="downloadCSVFromArray(resultArrJS, resultArrJSHeaders, filename)" value="Download Result">
 		</div>
 		<p>Enable pop-ups and disable your adblocker to enable downloads.</p>
+
+				
+		<!--Transfer this to the actual farm query pages-->
+		<!--Display Farm locations using a Siema carousel-->
+		<!--This maps embed is from https://www.embedgooglemap.net/ -->
+		<!--Reference: https://pawelgrzybek.github.io/siema/-->
+		<!--
+		<div class="container">
+			<div id="centeredDiv">
+				<div class="siema">
+					<?php //while($i < $resultArrLen): ?>
+						<div id="centeredDiv" class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<?php echo floatval($resultArr[$i]['latitude']) ?>%2C%20<?php echo floatval($resultArr[$i]['longitude']) ?>&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.couponflat.com/cyberghost-coupon/"></a></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>							
+					<?php //$i++; endwhile; $i = 0;?>
+				</div>
+				<input type="button" class="prev" value="prev farm"></input>
+				<input type="button" class="next" value="next farm"></input>				
+				
+				<script src="siema-master\dist\siema.min.js"></script>
+				<script type="text/javascript"> 
+					const farmSiema = new Siema();
+					document.querySelector('.prev').addEventListener('click', () => farmSiema.prev());
+					document.querySelector('.next').addEventListener('click', () => farmSiema.next());
+				</script>	
+			</div>
+		</div>
+		-->
+
 	<?php endif; ?>
 </div>
 

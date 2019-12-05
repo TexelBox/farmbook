@@ -102,6 +102,8 @@ a:hover {
 {
 	display: block;
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 input[type=date], input[type=text], input[type=password]
