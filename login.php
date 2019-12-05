@@ -2,12 +2,15 @@
     $pageTitle = "LOGIN";
     $navbarLink1 = "index.php";
     $navbarLink1Title = "HOME";
-    $navbarLink2 = "login.php";
-    $navbarLink2Title = "LOGIN";
+    $navbarLink2 = "auth.php";
+    $navbarLink2Title = "LOG-IN/OUT";
 	$navbarLink3 = "portal.php";
     $navbarLink3Title = "PORTAL";
     require_once("header.php");
     require_once("database.php");
+
+    // if user is logged in...
+    if (isset($_SESSION["logged_in"])) header("Location: logout.php");
 
     // check if form was submitted...
     if (isset($_POST["submit"])) {
