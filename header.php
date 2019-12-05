@@ -34,6 +34,7 @@
                     </li>
                     <?php if(isset($navbarLink1) && isset($navbarLink1Title)) echo "<li><a href=$navbarLink1>$navbarLink1Title</a></li>" ?>
 					<?php if(isset($navbarLink2) && isset($navbarLink2Title)) echo "<li><a href=$navbarLink2>$navbarLink2Title</a></li>" ?>
+					<?php if(isset($navbarLink3) && isset($navbarLink3Title)) echo "<li><a href=$navbarLink3>$navbarLink3Title</a></li>" ?>
                 </ul>   
             </div>
         </nav>

@@ -1,9 +1,15 @@
-<?php 
-    $pageTitle = "Damage by Time";
+<?php
+	$pageTitle = "Damage by Time";
     $navbarLink1 = "index.php";
     $navbarLink1Title = "HOME";
+    $navbarLink2 = "login.php";
+    $navbarLink2Title = "LOGIN";
+	$navbarLink3 = "portal.php";
+    $navbarLink3Title = "PORTAL";
     require_once("header.php");
-    require_once("database.php");
+	require_once("database.php");
+	
+	if (!isset($_SESSION["logged_in"]) || !isset($_SESSION["admin"])) header("Location: login.php");
 ?>
 
 <div class="container">

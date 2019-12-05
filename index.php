@@ -1,17 +1,19 @@
 <?php
     $pageTitle = "HOME";
-    $navbarLink1 = "login.php";
-    $navbarLink1Title = "LOGIN";
-	$navbarLink2 = "damage_by_time.php";
-    $navbarLink2Title = "Damage by Time"; 
+    $navbarLink1 = "index.php";
+    $navbarLink1Title = "HOME";
+    $navbarLink2 = "login.php";
+    $navbarLink2Title = "LOGIN";
+	$navbarLink3 = "portal.php";
+    $navbarLink3Title = "PORTAL"; 
     require_once("header.php");
     require_once("database.php");
 
     // EXAMPLE USAGE...
-    $db = new Database();
-    $result = $db->query("SELECT * FROM FARM");
-    $nbRows = $result->num_rows;
-    echo("TEST --- NUMBER OF ROWS: " . $nbRows);
+    //$db = new Database();
+    //$result = $db->query("SELECT * FROM FARM");
+    //$nbRows = $result->num_rows;
+    //echo("TEST --- NUMBER OF ROWS: " . $nbRows);
 ?>
 
 <section id="showcase">
