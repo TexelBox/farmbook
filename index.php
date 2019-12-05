@@ -18,7 +18,7 @@
 
 <section id="showcase">
     <div class="container">
-        <h1>[WIP]</h1>
+        <img src="assets/images/home-wheat.jpg" alt="picture of wheat" height="512" />
     </div>
 </section>
 
