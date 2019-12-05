@@ -104,13 +104,13 @@ a:hover {
 	text-align: center;
 }
 
-input[type=date], input[type=text]
+input[type=date], input[type=text], input[type=password]
 {
 	border:	5px solid #acbd95;
 	border-radius: 5px;
 }
 
-input[type=date]:hover, input[type=text]:hover
+input[type=date]:hover, input[type=text]:hover, input[type=password]:hover
 {
 	border:	5px solid #748c53;
 }

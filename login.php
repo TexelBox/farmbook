@@ -30,8 +30,9 @@
     }
 ?>
 
-<!-- styling reference: https://getbootstrap.com/docs/4.0/components/forms/ -->
-<form action="" method="post">
+<div class="container">
+    <!-- styling reference: https://getbootstrap.com/docs/4.0/components/forms/ -->
+    <form action="" method="post">
     <div class="form-group">
         <label for="inputUsername">USERNAME</label>
         <input class="form-control" id="inputUsername" aria-describedby="usernameHelp" type="text" name="username" placeholder="Username">
@@ -42,7 +43,8 @@
         <input class="form-control" id="inputPassword" type="password" name="password" placeholder="Password">
     </div>
     <button class="btn btn-primary" type="submit" name=submit>SUBMIT</button>
-</form>
+    </form>
+</div>
 
 <?php
     require_once("footer.php");
