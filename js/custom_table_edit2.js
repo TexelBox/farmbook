@@ -3,14 +3,14 @@
 // reference: https://stackoverflow.com/questions/12343714/typeerror-is-not-a-function-when-calling-jquery-function
 
 jQuery(document).ready(function($){
-    $('#table_farmhub_info').Tabledit({
-        url: 'live_edit.php',
+    $('#table_farmhub_livestock').Tabledit({
+        url: 'live_edit2.php',
         hideIdentifier: true,
         editButton: false,
-        deleteButton: false,
+        deleteButton: true,
         columns: {
-            identifier: [0, 'farm_id'],
-            editable: [[1, 'longitude'], [2, 'latitude'], [3, 'name'], [4, 'acres']]
+            identifier: [0, 'output_id'],
+            editable: [[1, 'tag'], [2, 'species'], [3, 'feed_type'], [4, 'lifespan']]
         },
         onSuccess:function(data, textStatus, jqXHR){
             if (data.action === "delete"){

@@ -56,6 +56,10 @@ class Database {
         return $result;
     }
 
+    public function getLastInsertID() {
+        return $this->connection->insert_id;
+    }
+
     //TODO: could add more specific methods like select(...), insert(...), delete(...), etc. that call query()
 }
 

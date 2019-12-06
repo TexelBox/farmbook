@@ -5,9 +5,7 @@
     require_once("database.php");
     $db = new Database();
     $input = filter_input_array(INPUT_POST);
-    $table_name = $_GET["table_name"];
 
-    if (isset($table_name) && $table_name === "table_farmhub_info") {
         if ($input["action"] === "edit") {
             $updated_field_name = NULL;
             $updated_field_data = NULL;
@@ -57,5 +55,4 @@
         }
     
         echo json_encode($input);
-    }
 ?>
