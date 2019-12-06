@@ -23,6 +23,7 @@
         <script src="js/jquery.tabledit.min.js"></script>
         <script src="js/custom_table_edit.js"></script>
         <script src="js/custom_table_edit2.js"></script>
+        <script src="js/custom_table_edit3.js"></script>
     </head>
     <body>
         <header id="main-header">

@@ -51,6 +51,40 @@
             }
         }
     }
+
+    if (isset($_POST["submitCrops"])) {
+        $cropID = $_POST["cropID"];
+        $cropSpecies = $_POST["cropSpecies"];
+        $cropVariety = $_POST["cropVariety"];
+        $cropLifespan = $_POST["cropLifespan"];
+
+        // validate...
+        if (!empty($cropID) || !empty($cropSpecies) || !empty($cropVariety) || !empty($cropLifespan)) {
+            // get here if we have at least 1 non-empty field enetered...
+            if (empty($cropID)) $cropID = NULL;
+            if (empty($cropSpecies)) $cropSpecies = NULL;
+            if (empty($cropVariety)) $cropVariety = NULL; 
+            if (empty($cropLifespan)) $cropLifespan = NULL;
+
+            $invalidFormat = false;
+            if (!is_null($cropID) && !(ctype_digit($cropID) && 0 < $cropID)) $invalidFormat = true;
+            if (!is_null($cropSpecies) && !(ctype_alnum($cropSpecies))) $invalidFormat = true;
+            if (!is_null($cropVariety) && !(ctype_alnum($cropVariety))) $invalidFormat = true;
+            if (!is_null($cropLifespan) && !(ctype_digit($cropLifespan) && 0 < $cropLifespan && $cropLifespan <= 100)) $invalidFormat = true;
+
+            if (!$invalidFormat) {
+
+                // add to parent table first
+                $sql = "INSERT INTO FARM_OUTPUT (output_id, lifespan) VALUES (NULL, ?)";
+                $db->preparedQuery($sql, "i", array($cropLifespan));
+                $cropParentID = $db->getLastInsertID();
+
+                // add to child table...
+                $sql = "INSERT INTO CROP (output_id, crop_id, species, variety, farm_id) VALUES (${cropParentID}, ?, ?, ?, ${farm_id})";
+                $result = $db->preparedQuery($sql, "iss", array($cropID, $cropSpecies, $cropVariety));
+            }
+        }
+    }
 ?>
 
 <div class="container">
@@ -126,10 +160,49 @@
 
     <hr />
     <h3>CROPS</h3>
-    <hr />
+
+    <table id="table_farmhub_crops" class="table table-light table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>CROP ID (>0)</th>
+                <th>SPECIES (alpha-numeric)</th>
+                <th>VARIETY (alpha-numeric)</th>
+                <th>LIFESPAN (years 1-100)</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php
+        $result_crops = $db->preparedQuery("SELECT * FROM FARM_OUTPUT, CROP WHERE (FARM_OUTPUT.output_id = CROP.output_id) AND (CROP.farm_id = ?)", "i", array($farm_id));
+        while ($result_crops_row = $result_crops->fetch_assoc()) {
+    ?>
+            <tr>
+                <td><?php echo is_null($result_crops_row["output_id"]) ? "" : $result_crops_row["output_id"]; ?></td>
+                <td><?php echo is_null($result_crops_row["crop_id"]) ? "" : $result_crops_row["crop_id"]; ?></td>
+                <td><?php echo is_null($result_crops_row["species"]) ? "" : $result_crops_row["species"]; ?></td>
+                <td><?php echo is_null($result_crops_row["variety"]) ? "" : $result_crops_row["variety"]; ?></td>
+                <td><?php echo is_null($result_crops_row["lifespan"]) ? "" : $result_crops_row["lifespan"]; ?></td>
+            </tr>
+    <?php } ?>
+        </tbody>
+    </table>
+
+    <form action="" method="post">
+        <table class="table table-light table-striped table-bordered table-hover">
+            <tr>
+                <td><input type="text" name="cropID" placeholder="cropID" /></td>
+                <td><input type="text" name="cropSpecies" placeholder="Species" /></td>
+                <td><input type="text" name="cropVariety" placeholder="Variety" /></td>
+                <td><input type="text" name="cropLifespan" placeholder="Lifespan" /></td>
+                <td><button class="btn btn-primary" type="submit" name=submitCrops>ADD</button></td>
+            </tr>
+        </table>
+    </form>
+
+    <!--hr />
     <h3>SUPPLY HISTORY</h3>
     <hr />
-    <h3>SALE HISTORY</h3>
+    <h3>SALE HISTORY</h3-->
     <hr />
 </div>
 
