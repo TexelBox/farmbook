@@ -9,8 +9,8 @@
 	require_once("header.php");
 	require_once("database.php");
 	
-	if (!isset($_SESSION["logged_in"]) || !isset($_SESSION["admin"])) header("Location: login.php");
-?>
+	if (!isset($_SESSION["logged_in"]) || (!isset($_SESSION["admin"]) && !isset($_SESSION["read_only"]) &&
+										   !isset($_SESSION["farmer"]))) header("Location: login.php");?>
 
 <div class="container">
 	<section id="main">
