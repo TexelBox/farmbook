@@ -83,7 +83,7 @@ if(isset($_POST["queryFarmID"]))
 				<td><?php echo $resultArr[$i]['acres']; ?></td>
 				<td><?php echo $resultArr[$i]['supplier_id']; ?></td>
 			</tr>
-			<?php $i++; endwhile; ?>
+			<?php $i++; endwhile; $i=0; ?>
 		</table>
 		
 		<!--Functionality to Download Result Table as CSV in JS-->
@@ -98,6 +98,29 @@ if(isset($_POST["queryFarmID"]))
 			<input type="button" onclick="downloadCSVFromArray(resultArrJS, resultArrJSHeaders, filename)" value="Download Result">
 		</div>
 		<p>Enable pop-ups and disable your adblocker to enable downloads.</p>
+		
+		<!--Display Farm locations using a Siema carousel. Reference: https://pawelgrzybek.github.io/siema/ -->
+		<!--This maps embed is from https://www.embedgooglemap.net/ -->
+		<div class="container">
+			<div id="centeredDiv">
+				<div class="siema">
+					<?php while($i < $resultArrLen): ?>
+						<div id="centeredDiv" class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=<?php echo $resultArr[$i]['latitude']; ?>%2C%20<?php echo $resultArr[$i]['longitude']; ?>&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.couponflat.com/cyberghost-coupon/"></a></div><style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>							
+					<?php $i++; endwhile; $i = 0;?>
+				</div>
+				<?php if($resultArrLen > 1): ?>
+					<input type="button" class="prev" value="prev farm"></input>
+					<input type="button" class="next" value="next farm"></input>				
+					
+					<script src="siema-master\dist\siema.min.js"></script>
+					<script type="text/javascript"> 
+						const farmSiema = new Siema();
+						document.querySelector('.prev').addEventListener('click', () => farmSiema.prev());
+						document.querySelector('.next').addEventListener('click', () => farmSiema.next());
+					</script>	
+				<?php endif; ?>
+			</div>
+		</div>
 	<?php endif; ?>
 </div>
 
